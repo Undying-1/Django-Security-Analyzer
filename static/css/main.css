@@ -1,0 +1,272 @@
+
+
+
+*{
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+body{
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.d-flex{
+    display: flex;
+}
+.flex-d-col{
+    flex-direction: column;
+}
+.gap-10{
+    gap: 10px;
+}
+.c-w{
+    color: #fff;
+}
+.button{
+    padding: 10px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+.header {
+  position: fixed;
+  height: 80px;
+  width: 100%;
+  z-index: 100;
+  padding: 0 20px;
+}
+.nav {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+.nav,
+.nav_item {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+    font-size: 24px;
+}
+.nav_logo,
+.nav_link,
+.button {
+  color: #fff;
+}
+.nav_logo {
+  font-size: 25px;
+}
+.nav_item {
+  column-gap: 25px;
+}
+.nav_link:hover {
+  color: #d9d9d9;
+}
+.button {
+  padding: 6px 24px;
+  border: 2px solid #fff;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button:hover{
+    background-color: #fff;
+    color: #007AFF;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.body{
+    background-color: #F2F2F7;
+    padding: 0px 30px;
+    min-height: 100vh;
+}
+.header{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__logo{
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+}
+.header__logo a{
+    color: #00C7BE;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.header__list{
+    display: flex;
+    gap: 30px;
+}
+.header__item{
+    border: 1px solid #00C7BE;
+    background-color: #00C7BE;
+}
+.header__item a{
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.header__item:hover{
+    background-color: #fff;
+}
+.header__item:hover a{
+    color: #00C7BE;
+}
+
+
+
+/* Страница загрузки файла */
+.fileUpload__container{
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 15px;
+}
+.fileUpload{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fileUpload__form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.fileUpload__button{
+    border: 1px solid #007AFF;
+    background-color: #007AFF;
+    color: #fff;
+}
+.fileUpload__button:hover{
+    background-color: #fff;
+    color: #007AFF;
+}
+
+
+/* Страница анализа */
+.mainContent{
+    margin: 50px auto;
+    min-height: 100%;
+}
+.mainContent__container{
+    display: flex;
+    gap: 30px;
+}
+
+
+/* Боковая панель */
+.siteBar{
+    background-color: #fff;
+    padding: 30px 15px;
+    border-radius: 16px;
+    min-width: 270px;
+    min-height: 50vh;
+}
+.siteBar__list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.siteBar__item{
+    padding: 10px;
+    background-color: #F2F2F7;
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 3px;
+    color: #00C7BE;
+}
+.siteBar__item:hover{
+    background-color: #00C7BE;
+    color: #fff;
+}
+
+
+/* Категории ошибок */
+.codeCategories{
+    background-color: #fff;
+    padding: 20px 15px;
+    border-radius: 16px;
+    width: 777px;
+}
+.codeCategories__button{
+    color: #fff;
+    border-radius: 7px;
+}
+.codeCategories__buttons{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.codeCategories__button-red{
+    background-color: #FF3B30;
+}
+.codeCategories__button-yellow{
+    background-color: #FF9500;
+}
+.codeCategories__button-green{
+    background-color: #34C759;
+}
+.codeCategories__text{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 20px auto;
+    padding: 15px;
+    width: 100%;
+    border-radius: 16px;
+    background-color: #F2F2F7;
+}
+
+
+/* Исходный код */
+.SourceCode{
+    background-color: #fff;
+    padding: 20px 15px;
+    border-radius: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.SourceCode__text{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 15px;
+    width: 100%;
+    border-radius: 16px;
+    background-color: #100020;
+    color: #fff;
+}
+.SourceCode__recomendations__button{
+    background-color: #F2F2F7;
+    color: #100020;
+}
+.SourceCode__recomendations__button:hover{
+    background-color: #c1fffc;
+    color: #100020;
+}
+.SourceCode__text-bottom{
+    background-color: #F2F2F7;
+    color: #100020;
+    margin-top: 20px;
+}
+
+

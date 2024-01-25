@@ -1,0 +1,44 @@
+{% extends 'custom/base.html' %}
+{% load static %}
+
+    {% block header %}
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="nav_logo">Byte</a>
+        <ul class="nav_items">
+          <li class="nav_item">
+            <a href="{% url 'pentest' %}" class="nav_link">Пентест</a>
+
+          </li>
+        </ul>
+
+      </nav>
+    </header>
+    {% endblock %}
+
+{% block content %}
+
+<div id="viewport">
+  <!-- Sidebar -->
+
+
+    <section class="fileUpload">
+        <div class="fileUpload__container container">
+
+            <form class="fileUpload__form" action="{% url 'analyze' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="fileUpload__input d-flex flex-d-col gap-10">
+                    Загрузите файл с исходным кодом:
+                    <input type="file" name="source">
+                </div>
+
+                <label for="languages" class="d-flex flex-d-col gap-10">Тип анализа:
+                    <select name="languages" id="languages" form="languagesform" size="6">
+                        <option value="volvo">Static</option>
+                    </select>
+                </label>
+                <button type="submit" class="fileUpload__button button">Начать анализ</button>
+            </form>
+    </section>
+</div>
+{% endblock %}

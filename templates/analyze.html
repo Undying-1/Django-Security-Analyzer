@@ -1,0 +1,104 @@
+{% extends 'custom/base.html' %}
+{% load static %}
+
+ {% block head %}
+    <link rel="stylesheet" href="{% static 'css/analyze.css' %}">
+     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    {% endblock %}
+
+{% block content %}
+
+    <section class="mainContent">
+        <div class="mainContent__container container">
+            
+            <div class="siteBar">
+                <div class="siteBar__list">
+                    <a href="" class="siteBar__item">Первый пункт</a>
+                    <a href="" class="siteBar__item">Второй пункт</a>
+                    <a href="" class="siteBar__item">Третий пункт</a>
+                </div>
+            </div>
+
+            <div class="codeCategories">
+                <div class="codeCategories__buttons">
+                    <a href="?level=High&project={{first.project.id}}" id="red" class="codeCategories__button button codeCategories__button-red">Кретичные {{ high }}</a>
+                    <a href="?level=Medium&project={{first.project.id}}" id="yellow" class="codeCategories__button button codeCategories__button-yellow">Предупреждения {{ medium }}</a>
+                    <a href="?level=Low&project={{first.project_id}}" id="green" class="codeCategories__button button codeCategories__button-green">Рекомендации {{ info }}</a>
+                </div>
+                <div id="problems" class="codeCategories__text">
+                    {%for issue in problems%}
+                    <a href="?error={{issue.pk}}&project={{issue.project_id}}" id="{{issue.pk}}">{{issue.error}}</a>
+                    {%endfor%}
+                </div>
+            </div>
+
+            <div class="SourceCode">
+                <div class="SourceCode__text">
+                    <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+                    <div class="container" id="container"></div>
+    
+                </div>
+
+                <div class="SourceCode__recomendations">
+                    <div class="SourceCode__recomendations__buttons">
+                        <a href="" class="SourceCode__recomendations__button button">Ошибка</a>
+                        <a href="" class="SourceCode__recomendations__button button">Рекомендации</a>
+                        <a href="{% url 'report' %}" class="SourceCode__recomendations__button button">Отчёт</a>
+                    </div>
+                    <div class="SourceCode__text SourceCode__text-bottom">
+                        <p>{{first.level}}</p>
+                        <p>Location: at {{first.location}}</p>
+                        <p>{{first.error}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+
+    </footer>
+
+    <script>
+
+    require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
+    var data = JSON.parse("{{data|escapejs}}");
+    var start = JSON.parse("{{start|escapejs}}");
+    var column = JSON.parse("{{column|escapejs}}");
+    let reader = new FileReader();
+
+
+    window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+
+    let proxy = URL.createObjectURL(new Blob([`
+        self.MonacoEnvironment = {
+            baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+        };
+        importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+    `], { type: 'text/javascript' }));
+
+    require(["vs/editor/editor.main"], function () {
+        let editor = monaco.editor.create(document.getElementById('container'), {
+            value: `${data}`,
+            language: 'python',
+            theme: 'vs-dark'
+        });
+        let revealedLine = parseInt(start)
+        editor.revealLine(revealedLine);
+        editor.setPosition({lineNumber: revealedLine, column: parseInt(column) })
+    });
+    </script>
+
+<style>
+html, body, #container {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	margin: 0;
+	padding: 0;
+}
+
+
+</style>
+    {% endblock %}
